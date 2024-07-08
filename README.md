@@ -10,7 +10,7 @@ Based on:
 ## How-to
 
 - Clone the repo
-- Edit & improve docker-compose.iverride.yml file with yours definitions.
+- Edit & improve docker-compose.override.yml file with yours definitions.
 - Run:
 
 ```sh

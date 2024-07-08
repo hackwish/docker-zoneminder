@@ -1,0 +1,19 @@
+services:
+  db:
+    environment:
+      MYSQL_DATABASE: zm
+      MYSQL_USER: zmuser
+      MYSQL_PASSWORD: zmpass
+      MARIADB_ROOT_PASSWORD: w8t67u23789t
+  zoneminder:
+    environment:
+      # ZM_SERVER_HOST: zoneminder1
+      MYSQL_DATABASE: zm
+      MYSQL_USER: zmuser
+      MYSQL_PASSWORD: zmpass
+      MAX_LOG_SIZE_BYTES: 1000000
+      MAX_LOG_NUMBER: 20
+      EMAIL_HOST: smtp.gmail.com
+      EMAIL_PORT: 587
+      EMAIL_ADDRESS: coolemail@gmail.com
+      EMAIL_PASSWORD: very_secure_password

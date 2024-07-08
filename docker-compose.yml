@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb
+    container_name: zoneminder-db
+    restart: always
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --default-time-zone=America/Santiago
+    volumes:
+      - ./zm/db:/var/lib/mysql
+    environment:
+      SET_CONTAINER_TIMEZONE: 'true'
+      CONTAINER_TIMEZONE: America/Santiago
+      TZ: America/Santiago
+
+  zoneminder:
+    image: ghcr.io/zoneminder-containers/zoneminder-base:latest
+    container_name: zoneminder
+    restart: always
+    shm_size: 1G
+    stop_grace_period: 45s
+    depends_on:
+      - db
+    ports:
+      - 8080:80
+    links:
+      - db
+    # tmpfs:
+    #   - /run
+    #   - /tmp
+    volumes:
+      - ./zm/data:/data
+      - ./zm/config:/config
+      - ./zm/log:/log
+    environment:
+      SET_CONTAINER_TIMEZONE: 'true'
+      CONTAINER_TIMEZONE: America/Santiago
+      TZ: America/Santiago
+
+volumes:
+  zm:
